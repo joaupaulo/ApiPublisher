@@ -8,7 +8,7 @@ using RabbitMQ.Client;
 
 namespace ApiPublisher.RabbitServices
 {
-    public class MenssageService : IMenssageService
+    public class MessageService : IMessageService
     {
 
         //"por uma consulta no banco pra poder fazer a filtragem se já existe no banco ou não"
@@ -16,7 +16,7 @@ namespace ApiPublisher.RabbitServices
 
 
 
-        public void ConnectMensage(Produtos produto)
+        public void ConnectMensage(Product product)
         {
             var factory = new ConnectionFactory() { HostName = "localhost" };
             using (var connection = factory.CreateConnection())
@@ -28,7 +28,7 @@ namespace ApiPublisher.RabbitServices
                                      autoDelete: false,
                                      arguments: null);
 
-                string message = System.Text.Json.JsonSerializer.Serialize(produto);
+                string message = System.Text.Json.JsonSerializer.Serialize(product);
                 var body = Encoding.UTF8.GetBytes(message);
 
                 channel.BasicPublish(exchange: "",
