@@ -12,8 +12,7 @@ namespace ApiPublisher.Entidades
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        [BsonElement("Name")]
-        public Guid ProdutoId { get; set; }
+        public int ProdutoId { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
         public string Descrption { get; set; }

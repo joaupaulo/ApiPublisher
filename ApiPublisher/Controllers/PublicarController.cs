@@ -17,16 +17,18 @@ namespace ApiPublisher.Controllers
         private ILogger<PublicarController> _logger;
         private IMenssageService _imenssagemservice;
         
-        public PublicarController(IMenssageService imenssagemservice)
+        public PublicarController(IMenssageService imenssagemservice, ILogger<PublicarController> logger )
         {
             _imenssagemservice = imenssagemservice;
+            _logger = logger;
         }
 
-
+        [HttpPost]
         public ActionResult InserirPedido(Produtos produto)
         {
             try
             {
+               
                 _imenssagemservice.ConnectMensage(produto);
                 return Accepted(produto);
             } catch (Exception ex)
